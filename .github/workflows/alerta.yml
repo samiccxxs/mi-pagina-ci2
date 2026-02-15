@@ -1,0 +1,24 @@
+name: Notificacion NTFY
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Ejecutar programa Hola Mundo
+        run: node index.js
+
+      - name: Enviar notificacion a ntfy
+        run: |
+          curl -H "Title: Nuevo push en main 🚀" \
+               -H "Priority: 5" \
+               -d "Se subio nuevo codigo al repositorio de Carlos" \
+               https://ntfy.sh/devops-itla
